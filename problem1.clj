@@ -1,10 +1,8 @@
 (defn multiples_of_3_5 [cap]
-  (def sum 0)
-  (loop [x 0]
-    (when (< x cap)
-      (if (= (mod x 3) 0) (inc sum))
-      (if (= (mod x 5) 0) (inc sum))
-      (recur (+ x 1))))
-)
+  (loop [i 0 s 0]
+    (if (= i cap) s
+      (if (or (= 0 (mod i 3))
+        (= 0 (mod i 5))) (recur (inc i) (+ s i))
+        (recur (inc i) s)))))
 
-(multiples_of_3_5 1000)
+(println (multiples_of_3_5 1000))
