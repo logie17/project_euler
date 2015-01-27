@@ -1,26 +1,15 @@
 #!/usr/local/bin/node
 
-var sum = 0;
-function even_fib(cap, prev) {
-  var next;
-  if ( prev.length ) {
-    next = prev[0] + prev[1];
-    prev = [prev[1], next];
-  } else {
-    next = 0;
-    prev = [0,1]
+function even_fib(p1, p2, cap) {
+  var c = p1 + p2;
+  var a = c % 2 == 0 ? c : c == 3 ? p2 : 0;
+  if (c < cap ) {
+   return a + even_fib(p2, c, cap);
   }
-
-  if ( next < cap ) {
-    if ( next % 2 == 0 ) 
-      sum += next;
-    return even_fib(cap,prev);
-  } else {
-    return sum;
-  }
+  return a;
 }
 
-var sum = even_fib(4000000,[]);
+var sum = even_fib(1,2,4000000);
 console.log(sum);
 
 // 4613732
